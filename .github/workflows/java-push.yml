@@ -1,0 +1,30 @@
+name: Java push demo
+
+on:
+ push:
+   branches: 
+      - main
+
+jobs:
+  java-demo:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: checkout repo
+        uses: actions/checkout@v4
+
+      - name: setup java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: checkout java version
+        run: java --version
+
+      - name: compile java file
+        run:  javac helloworld.java
+
+      - name: run java application
+        run: java helloworld
+     
